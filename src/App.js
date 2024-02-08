@@ -1,14 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-import { Counter } from './features/counter/Counters';
+import logo from "./logo.svg";
+import "./App.css";
+// import { Counter } from './features/counter/Counters';
+import SideDrower from "./components/ClippedDrawer";
+import ResponsiveAppBar from "./components/PrimarySearchAppBar";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./config/routesConfig";
+import RootPage from "./pages/Rootpage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello Ashsih</h1>
-        <Counter></Counter>
-      </header>
+    <div>
+      <RouterProvider router={router}>
+        {/* <SideDrower /> */}
+        {/* <ResponsiveAppBar /> */}
+        <RootPage/>
+      </RouterProvider>
     </div>
   );
 }
