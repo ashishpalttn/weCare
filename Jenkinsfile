@@ -38,8 +38,12 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Build the React app
-                    sh 'npm run build'
+                    // Print Node.js and npm versions for verification
+                    sh 'node -v'
+                    sh 'npm -v'
+                    
+                    // Install project dependencies
+                    sh 'npm install'
                 }
             }
         }
