@@ -1,15 +1,19 @@
 pipeline {
     agent any
 
-     environment {
+  
+    environment {
         NVM_DIR = "${WORKSPACE}/.nvm"
     }
 
     stages {
 
-        stage('Set Up Environment') {
+         stage('Set Up Environment') {
             steps {
                 script {
+                    // Create .nvm directory
+                    sh "mkdir -p ${NVM_DIR}"
+
                     // Install nvm
                     sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash'
 
@@ -21,7 +25,6 @@ pipeline {
                 }
             }
         }
-
 
         stage('Install Dependencies') {
             steps {
