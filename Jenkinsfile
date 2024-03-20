@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Set Up Environment') {
+               stage('Set Up Environment') {
             steps {
                 script {
                     // Define NVM_DIR with double quotes
@@ -13,7 +13,7 @@ pipeline {
                     
                     // Source nvm and set default version
                     sh "export NVM_DIR='${NVM_DIR}'"
-                    sh "source '${NVM_DIR}/nvm.sh'"
+                    sh ". '${NVM_DIR}/nvm.sh'"
                     sh 'nvm install stable'
                     sh 'nvm use stable'
                 }
