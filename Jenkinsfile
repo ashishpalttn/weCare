@@ -8,12 +8,15 @@ pipeline {
 
     stages {
 
-      stage('Set Up Environment') {
+         stage('Set Up Environment') {
             steps {
                 script {
-                    // Install Node.js
-                    sh 'curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -'
-                    sh 'sudo apt-get install -y nodejs'
+                    // Set up directories
+                    sh 'mkdir -p $HOME/nodejs'
+                    sh 'curl -sL https://deb.nodesource.com/setup_16.x -o $HOME/nodejs/setup.sh'
+                    sh 'chmod +x $HOME/nodejs/setup.sh'
+                    sh '$HOME/nodejs/setup.sh'
+                    sh 'apt-get install -y nodejs'
                 }
             }
         }
