@@ -2,20 +2,14 @@ pipeline {
     agent any
 
     stages {
-               stage('Set Up Environment') {
+                stage('Set Up Environment') {
             steps {
                 script {
                     // Define NVM_DIR with double quotes
                     def NVM_DIR = "/var/lib/jenkins/workspace/React by ChatGPT/.nvm"
 
-                    // Install nvm
-                    sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash'
-                    
-                    // Source nvm and set default version
-                    sh "export NVM_DIR='${NVM_DIR}'"
-                    sh ". '${NVM_DIR}/nvm.sh'"
-                    sh 'nvm install stable'
-                    sh 'nvm use stable'
+                    // Install nvm, install Node.js, and use stable version
+                    sh "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && export NVM_DIR='${NVM_DIR}' && . '${NVM_DIR}/nvm.sh' && nvm install stable && nvm use stable"
                 }
             }
         }
@@ -32,7 +26,6 @@ pipeline {
                 }
             }
         }
-
         // stage('Test') {
         //     steps {
         //         script {
