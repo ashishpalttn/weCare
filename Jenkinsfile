@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Set Up Environment') {
+          stage('Set Up Environment') {
             steps {
                 script {
                     // Define NVM_DIR with double quotes
@@ -18,11 +18,11 @@ pipeline {
             steps {
                 script {
                     // Print Node.js and npm versions for verification
-                    sh '${NVM_DIR}/versions/node/$(node -v)/bin/node -v'
-                    sh '${NVM_DIR}/versions/node/$(node -v)/bin/npm -v'
+                    sh "${NVM_DIR}/versions/node/$(nvm current)/bin/node -v"
+                    sh "${NVM_DIR}/versions/node/$(nvm current)/bin/npm -v"
 
                     // Install project dependencies
-                    sh '${NVM_DIR}/versions/node/$(node -v)/bin/npm install'
+                    sh "${NVM_DIR}/versions/node/$(nvm current)/bin/npm install"
                 }
             }
         }
