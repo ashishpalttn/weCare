@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-
         stage('Set Up Environment') {
             steps {
                 script {
@@ -13,8 +12,8 @@ pipeline {
                     sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash'
                     
                     // Source nvm and set default version
-                    sh "export NVM_DIR=${NVM_DIR}"
-                    sh "source ${NVM_DIR}/nvm.sh"
+                    sh "export NVM_DIR='${NVM_DIR}'"
+                    sh "source '${NVM_DIR}/nvm.sh'"
                     sh 'nvm install stable'
                     sh 'nvm use stable'
                 }
@@ -28,19 +27,6 @@ pipeline {
                     sh 'node -v'
                     sh 'npm -v'
 
-                    // Install project dependencies
-                    sh 'npm install'
-                }
-            }
-        }
-
-        stage('Build') {
-            steps {
-                script {
-                    // Print Node.js and npm versions for verification
-                    sh 'node -v'
-                    sh 'npm -v'
-                    
                     // Install project dependencies
                     sh 'npm install'
                 }
