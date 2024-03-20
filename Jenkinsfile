@@ -8,20 +8,15 @@ pipeline {
 
     stages {
 
-         stage('Set Up Environment') {
+          stage('Set Up Environment') {
             steps {
                 script {
-                    // Create .nvm directory
-                    sh "mkdir -p ${NVM_DIR}"
-
-                    // Install nvm
+                    // Install nvm and Node.js
                     sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash'
-
-                    // Source nvm and set default version
-                    sh "export NVM_DIR=${NVM_DIR}"
-                    sh "source ${NVM_DIR}/nvm.sh"
-                    sh 'nvm install stable'
-                    sh 'nvm use stable'
+                    sh 'export NVM_DIR="$HOME/.nvm"'
+                    sh 'source "$NVM_DIR/nvm.sh"'
+                    sh 'nvm install node'
+                    sh 'nvm use node'
                 }
             }
         }
@@ -29,7 +24,11 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    // Install Node.js dependencies
+                    // Print Node.js and npm versions for verification
+                    sh 'node -v'
+                    sh 'npm -v'
+
+                    // Install project dependencies
                     sh 'npm install'
                 }
             }
