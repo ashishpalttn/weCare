@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-          stage('Set Up Environment') {
+        stage('Set Up Environment') {
             steps {
                 script {
                     // Define NVM_DIR with double quotes
