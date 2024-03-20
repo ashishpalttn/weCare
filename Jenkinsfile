@@ -8,22 +8,25 @@ pipeline {
 
     stages {
 
-            stage('Set Up Environment') {
+        stage('Set Up Environment') {
             steps {
                 script {
+                    // Define NVM_DIR with double quotes
+                    def NVM_DIR = "/var/lib/jenkins/workspace/React by ChatGPT/.nvm"
+
                     // Install nvm
                     sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash'
+                    
+                    // Source nvm and set default version
                     sh "export NVM_DIR=${NVM_DIR}"
                     sh "source ${NVM_DIR}/nvm.sh"
-
-                    // Install Node.js and use stable version
                     sh 'nvm install stable'
                     sh 'nvm use stable'
                 }
             }
         }
 
-           stage('Install Dependencies') {
+        stage('Install Dependencies') {
             steps {
                 script {
                     // Print Node.js and npm versions for verification
