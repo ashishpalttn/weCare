@@ -1,11 +1,10 @@
 pipeline {
     agent any
 
-      environment {
+    environment {
         NVM_DIR = "/var/lib/jenkins/workspace/React by ChatGPT/.nvm"
-        PATH = "$NVM_DIR/versions/node/$(nvm current)/bin:$PATH"
+        PATH = "$NVM_DIR/versions/node/\$(nvm current)/bin:\$PATH"
     }
-
 
     stages {
         stage('Set Up Environment') {
