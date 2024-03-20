@@ -8,15 +8,12 @@ pipeline {
 
     stages {
 
-          stage('Set Up Environment') {
+      stage('Set Up Environment') {
             steps {
                 script {
-                    // Install nvm and Node.js
-                    sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash'
-                    sh 'export NVM_DIR="$HOME/.nvm"'
-                    sh 'source "$NVM_DIR/nvm.sh"'
-                    sh 'nvm install node'
-                    sh 'nvm use node'
+                    // Install Node.js
+                    sh 'curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -'
+                    sh 'sudo apt-get install -y nodejs'
                 }
             }
         }
