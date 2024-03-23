@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         NVM_DIR = "/var/lib/jenkins/workspace/React by ChatGPT/.nvm"
-        PATH = "$NVM_DIR/versions/node/\$(nvm current)/bin:\$PATH"
+        PATH = "/var/lib/jenkins/workspace/React by ChatGPT/.nvm/versions/node/\$(nvm current)/bin"
     }
 
     stages {
@@ -23,12 +23,14 @@ pipeline {
                     sh 'node -v'
                     sh 'npm -v'
 
+                    // Add Node.js binaries to PATH
+                    sh 'export PATH="${NVM_DIR}/versions/node/$(nvm current)/bin:$PATH"'
+
                     // Install project dependencies
                     sh 'npm install'
                 }
             }
         }
-
         // stage('Test') {
         //     steps {
         //         script {
